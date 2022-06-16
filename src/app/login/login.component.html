@@ -1,0 +1,59 @@
+<form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm)">
+    <div *ngIf="error" class="alert alert-danger">
+        {{error}}
+    </div>
+
+    <br>
+
+    <label for="">email:</label>
+    <input formControlName="email" type="email" class="form-control mb-3">
+    <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert border border-danger ">
+        <p *ngIf="loginForm.get('email')?.errors?.required ">email is required</p>
+        <p *ngIf="loginForm.get('email')?.errors?.email">email invalid</p>
+    </div>
+
+    <label for="">password:</label>
+    <input formControlName="password" type="password" class="form-control mb-3">
+    <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched"
+        class="alert border border-danger ">
+        <p *ngIf="loginForm.get('password')?.errors?.required ">password is required</p>
+        <p *ngIf="loginForm.get('password')?.errors?.pattern">password should start A-Z</p>
+
+    </div>
+    <p>don't have account?<a routerLink="/register">register now</a></p>
+
+    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-info">login</button>
+
+</form>
+
+
+
+
+<!-- <form class="w-75 m-auto py-5" (ngSubmit)=" getLoginInfo( loginForm)" [formGroup]=" loginForm">
+
+    <div class="form-group">
+        <label class="my-1" for="">Email:</label>
+        <input [class.is-valid]=" loginForm.get('email')?.errors==null&&
+        loginForm.get('email')?.touched"
+            [class.is-invalid]=" loginForm.get('email')?.invalid&& loginForm.get('email')?.touched"
+            formControlName="email" type="text" class=" form-control">
+        <p *ngIf=" loginForm.get('email')?.errors !=null && loginForm.get('email')?.touched" class="py-2 text-danger">
+            Email inValid </p>
+    </div>
+
+    <div class="form-group">
+        <label class="my-1" for="">Password:</label>
+        <input [class.is-valid]=" loginForm.get('password')?.errors==null&&
+        loginForm.get('password')?.touched"
+            [class.is-invalid]=" loginForm.get('password')?.invalid&& loginForm.get('password')?.touched"
+            formControlName="password" type="text" class=" form-control">
+        <p *ngIf=" loginForm.get('password')?.errors !=null && loginForm.get('password')?.touched"
+            class="py-2 text-danger">Password inValid </p>
+    </div>
+
+    <div *ngIf="flag" class="my-2 alert alert-danger ">
+        {{errorMessage}}
+    </div>
+
+    <button [disabled]=" loginForm.invalid" type="submit" class="my-2 btn btn-mine text-white">login</button>
+</form> -->
